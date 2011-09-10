@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetServer", "NuGetServer\NuGetServer.csproj", "{9E028946-4C9E-4D86-8E33-18AE15677AAB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C55F8106-7F71-4CEC-BEAB-EEC88112F547}"
+	ProjectSection(SolutionItems) = preProject
+		build.ps1 = build.ps1
+		Build\default.ps1 = Build\default.ps1
+		Build\publish.ps1 = Build\publish.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

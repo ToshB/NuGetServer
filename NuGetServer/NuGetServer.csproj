@@ -47,6 +47,15 @@
     <Reference Include="NuGet.Server, Version=1.5.20818.9011, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuGet.Server.1.5.20818.9011\lib\net40\NuGet.Server.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="RouteMagic">
       <HintPath>..\packages\RouteMagic.1.0\lib\net40\RouteMagic.dll</HintPath>
     </Reference>
