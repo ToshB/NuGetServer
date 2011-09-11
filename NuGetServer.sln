@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		default.ps1 = default.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetServer.Tests", "NuGetServer.Tests\NuGetServer.Tests.csproj", "{C3B54AF1-123D-4AAB-BB2F-4C17C4ED17A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetServer.Tests.Integration", "NuGetServer.Tests.Integration\NuGetServer.Tests.Integration.csproj", "{F4F5BBEE-597C-45D7-ACEA-E5C56FD12B85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{9E028946-4C9E-4D86-8E33-18AE15677AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E028946-4C9E-4D86-8E33-18AE15677AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E028946-4C9E-4D86-8E33-18AE15677AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B54AF1-123D-4AAB-BB2F-4C17C4ED17A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B54AF1-123D-4AAB-BB2F-4C17C4ED17A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B54AF1-123D-4AAB-BB2F-4C17C4ED17A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B54AF1-123D-4AAB-BB2F-4C17C4ED17A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F5BBEE-597C-45D7-ACEA-E5C56FD12B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F5BBEE-597C-45D7-ACEA-E5C56FD12B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F5BBEE-597C-45D7-ACEA-E5C56FD12B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F5BBEE-597C-45D7-ACEA-E5C56FD12B85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
