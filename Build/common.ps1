@@ -30,8 +30,8 @@ task Init {
 }
 
 task Clean -depends Init {
-    Remove-Item $OutputDir -recurse -force -ErrorAction SilentlyContinue -WhatIf:$Whatif
-	Remove-Item $NuGetOutputDir -recurse -force -ErrorAction SilentlyContinue -WhatIf:$Whatif
+    Remove-Item $OutputDir -recurse -force -ErrorAction SilentlyContinue
+	Remove-Item $NuGetOutputDir -recurse -force -ErrorAction SilentlyContinue
 	exec { msbuild /target:Clean /verbosity:minimal "$SolutionFile" }
 } 
 
@@ -48,8 +48,8 @@ task Test -depends Build {
 	if($Tests){
 		$old = pwd
 		cd $OutputDir
-	  	& $NUnit /nologo $Tests /xml:NUnit-Results.xml
-		TeamCity-ImportNUnitResult "NUnit-Results.xml"
+	  	& $NUnit /nologo $Tests
+		TeamCity-ImportNUnitResult $OutputDir + "TestResult.xml"
 		cd $old
 	}else{
 		Write-Host "Nothing to test ($TestAssemblies)"
