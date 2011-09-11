@@ -48,7 +48,8 @@ task Test -depends Build {
 	if($Tests){
 		$old = pwd
 		cd $OutputDir
-	  	& $NUnit /nologo $Tests
+	  	& $NUnit /nologo $Tests /xml:NUnit-Results.xml
+		TeamCity-ImportNUnitResult "NUnit-Results.xml"
 		cd $old
 	}else{
 		Write-Host "Nothing to test ($TestAssemblies)"

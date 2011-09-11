@@ -83,6 +83,10 @@ function TeamCity-ImportFxCopResult([string]$path) {
 	Log "importData type='FxCop' path='$path'"
 }
 
+function TeamCity-ImportNUnitResult([string]$path) {
+	Log "importData type='nunit' path='$path'"
+}
+
 function TeamCity-ReportBuildStatus([string]$status, [string]$text='') {
 	Log "buildStatus '$status' text='$text'"
 }
