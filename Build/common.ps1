@@ -15,6 +15,12 @@ $framework = '4.0'
 TaskSetup {
 	$taskName = $currentContext.currentTaskName
 	TeamCity-ProgressMessage("Executing task '$taskName'")
+	TeamCity-StartBlock("$taskName")
+}
+
+TaskTearDown {
+	$taskName = $currentContext.currentTaskName
+	TeamCity-EndBlock("$taskName")
 }
 
 task default -depends Build
