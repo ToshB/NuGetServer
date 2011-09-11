@@ -4,7 +4,7 @@ properties {
 	$BaseDir = Resolve-Path ".\"
 	$SolutionFile = Resolve-Path $BaseDir\*.sln
 	$OutputDir = "$BaseDir\Out\"
-	$NuGetOutputDir = "$OutputDir\NuGet\"
+	$NuGetOutputDir = $OutputDir +"NuGet\"
 	$TestAssemblies= @("*.Tests.Unit.dll","*.Tests.Integration.dll","*.Tests.dll")
 	$NUnitPath = "$BaseDir\packages\NUnit.*\tools\nunit-console.exe"
 	$NuGetPath = "$BaseDir\packages\NuGet.Commandline.*\tools\NuGet.exe"
@@ -66,5 +66,9 @@ task PackNuget {
 	foreach ($spec in $specs){
 		$project = $spec.FullName.Replace("nuspec", "csproj")
 		exec { & $NuGet pack $project -Build -Symbols -OutputDirectory $NuGetOutputDir -Properties Configuration=Release}
+	}
+	#publishing packages in nugetoutputdir
+	foreach ($pkg in (Get-ChildItem $NuGetOutputDir -Recurse -Include *.nupkg)){
+		TeamCity-PublishArtifact($pkg.FullName)
 	}
 }

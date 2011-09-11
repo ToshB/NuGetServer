@@ -7,143 +7,92 @@ if ($env:TEAMCITY_VERSION) {
 	$host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size(8192,50)
 }
 
+function Log([string]$msg){
+	if($env:TEAMCITY_VERSION){
+		Write-Host "##teamcity[$msg]"
+	}
+}
+
 function TeamCity-StartBlock([string]$name) {
-	Write-Output "##teamcity[blockOpened name='$name']"
+	Log "blockOpened name='$name'"
 }
 
 function TeamCity-EndBlock([string]$name) {
-	Write-Output "##teamcity[blockClosed name='$name']"
+	Log "blockClosed name='$name']"
 }
 
 function TeamCity-Log([string]$message, [string]$details){
-	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='NORMAL']"
+	Log "message text='$message' errorDetails='$details' status='NORMAL'"
 }
 
 function TeamCity-Warn([string]$message, [string]$details){
-	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='WARNING']"
+	Log "message text='$message' errorDetails='$details' status='WARNING'"
 }
 
 function TeamCity-Failure([string]$message, [string]$details){
-	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='FAILURE']"
+	Log "message text='$message' errorDetails='$details' status='FAILURE'"
 }
 
 function TeamCity-Error([string]$message, [string]$details){
-	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='ERROR']"
+	Log "message text='$message' errorDetails='$details' status='ERROR'"
 }
 
 function TeamCity-CompilationStarted([string]$name){
-	Write-Output "##teamcity[compilationStarted compiler='$name']"
+	Log "compilationStarted compiler='$name]"
 }
 
 function TeamCity-CompilationFinished([string]$name){
-	Write-Output "##teamcity[compilationFinished compiler='$name']"
+	Log "compilationFinished compiler='$name'"
 }
 
 function TeamCity-PublishArtifact([string]$path){
-	Write-Output "##teamcity[publishArtifacts '$path']"
+	Log "publishArtifacts '$path'"
 }
 
-
 function TeamCity-TestSuiteStarted([string]$name) {
-	Write-Output "##teamcity[testSuiteStarted name='$name']"
+	Log "testSuiteStarted name='$name'"
 }
 
 function TeamCity-TestSuiteFinished([string]$name) {
-	Write-Output "##teamcity[testSuiteFinished name='$name']"
+	Log "testSuiteFinished name='$name'"
 }
 
 function TeamCity-ProgressMessage([string]$message) {
-	Write-Output "##teamcity[progressMessage '$message']"
+	Log "progressMessage '$message'"
 }
 
 function TeamCity-ProgressStart([string]$message) {
-	Write-Output "##teamcity[progressStart '$message']"
+	Log "progressStart '$message'"
 }
 
 function TeamCity-ProgressFinish([string]$message) {
-	Write-Output "##teamcity[progressFinish '$message']"
-}
-
-
-function TeamCity-TestStarted([string]$name) {
-	Write-Output "##teamcity[testStarted name='$name']"
-}
-
-function TeamCity-TestFinished([string]$name) {
-	Write-Output "##teamcity[testFinished name='$name']"
-}
-
-function TeamCity-TestIgnored([string]$name, [string]$message='') {
-	Write-Output "##teamcity[testIgnored name='$name' message='$message']"
-}
-
-function TeamCity-TestOutput([string]$name, [string]$output) {
-	Write-Output "##teamcity[testStdOut name='$name' out='$output']"
-}
-
-function TeamCity-TestError([string]$name, [string]$output) {
-	Write-Output "##teamcity[testStdErr name='$name' out='$output']"
-}
-
-function TeamCity-TestFailed([string]$name, [string]$message, [string]$details='', [string]$type='', [string]$expected='', [string]$actual='') {
-	$output="##teamcity[testFailed ";
-	if (![string]::IsNullOrEmpty($type)) {
-		$output += " type='$type'"
-	}
-	
-	$output += " name='$name' message='$message' details='$details'"
-	
-	if (![string]::IsNullOrEmpty($expected)) {
-		$output += " expected='$expected'"
-	}
-	if (![string]::IsNullOrEmpty($actual)) {
-		$output += " actual='$actual'"
-	}
-	
-	$output += ']'
-	Write-Output $output
+	Log "progressFinish '$message'"
 }
 
 # See http://confluence.jetbrains.net/display/TCD5/Manually+Configuring+Reporting+Coverage
 function TeamCity-ConfigureDotNetCoverage([string]$key, [string]$value) {
-	Write-Output "##teamcity[dotNetCoverage $key='$value']"
+	Log "dotNetCoverage $key='$value'"
 }
 
 function TeamCity-ImportDotNetCoverageResult([string]$tool, [string]$path) {
-	Write-Output "##teamcity[importData type='dotNetCoverage' tool='$tool' path='$path']"
+	Log "importData type='dotNetCoverage' tool='$tool' path='$path'"
 }
 
 # See http://confluence.jetbrains.net/display/TCD5/FxCop_#FxCop_-UsingServiceMessages
 function TeamCity-ImportFxCopResult([string]$path) {
-	Write-Output "##teamcity[importData type='FxCop' path='$path']"
-}
-
-function TeamCity-PublishArtifact([string]$path) {
-	Write-Output "##teamcity[publishArtifacts '$path']"
-}
-
-function TeamCity-ReportBuildStart([string]$message) {
-	Write-Output "##teamcity[progressStart '$message']"
-}
-
-function TeamCity-ReportBuildProgress([string]$message) {
-	Write-Output "##teamcity[progessMessage '$message']"
-}
-
-function TeamCity-ReportBuildFinish([string]$message) {
-	Write-Output "##teamcity[progessFinish '$message']"
+	Log "importData type='FxCop' path='$path'"
 }
 
 function TeamCity-ReportBuildStatus([string]$status, [string]$text='') {
-	Write-Output "##teamcity[buildStatus '$status' text='$text']"
+	Log "buildStatus '$status' text='$text'"
 }
 
 function TeamCity-SetBuildNumber([string]$buildNumber) {
-	Write-Output "##teamcity[buildNumber '$buildNumber']"
+	Log "buildNumber '$buildNumber'"
 }
 
 function TeamCity-SetBuildStatistic([string]$key, [string]$value) {
-	Write-Output "##teamcity[buildStatisticValue key='$key' value='$value']"
+	Log "buildStatisticValue key='$key' value='$value'"
 }
 
 function TeamCity-CreateInfoDocument([string]$buildNumber='', [boolean]$status=$true, [string[]]$statusText=$null, [System.Collections.IDictionary]$statistics=$null) {
