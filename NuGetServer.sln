@@ -6,8 +6,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C55F8106-7F71-4CEC-BEAB-EEC88112F547}"
 	ProjectSection(SolutionItems) = preProject
 		build.ps1 = build.ps1
-		Build\default.ps1 = Build\default.ps1
-		Build\publish.ps1 = Build\publish.ps1
+		Build\common.ps1 = Build\common.ps1
+		default.ps1 = default.ps1
 	EndProjectSection
 EndProject
 Global
