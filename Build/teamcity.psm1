@@ -7,6 +7,43 @@ if ($env:TEAMCITY_VERSION) {
 	$host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.Size(8192,50)
 }
 
+function TeamCity-StartBlock([string]$name) {
+	Write-Output "##teamcity[blockOpened name='$name']"
+}
+
+function TeamCity-EndBlock([string]$name) {
+	Write-Output "##teamcity[blockClosed name='$name']"
+}
+
+function TeamCity-Log([string]$message, [string]$details){
+	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='NORMAL']"
+}
+
+function TeamCity-Warn([string]$message, [string]$details){
+	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='WARNING']"
+}
+
+function TeamCity-Failure([string]$message, [string]$details){
+	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='FAILURE']"
+}
+
+function TeamCity-Error([string]$message, [string]$details){
+	Write-Output "##teamcity[message text='$message' errorDetails='$details' status='ERROR']"
+}
+
+function TeamCity-CompilationStarted([string]$name){
+	Write-Output "##teamcity[compilationStarted compiler='$name']"
+}
+
+function TeamCity-CompilationFinished([string]$name){
+	Write-Output "##teamcity[compilationFinished compiler='$name']"
+}
+
+function TeamCity-PublishArtifact([string]$path){
+	Write-Output "##teamcity[publishArtifacts '$path']"
+}
+
+
 function TeamCity-TestSuiteStarted([string]$name) {
 	Write-Output "##teamcity[testSuiteStarted name='$name']"
 }
@@ -14,6 +51,19 @@ function TeamCity-TestSuiteStarted([string]$name) {
 function TeamCity-TestSuiteFinished([string]$name) {
 	Write-Output "##teamcity[testSuiteFinished name='$name']"
 }
+
+function TeamCity-ProgressMessage([string]$message) {
+	Write-Output "##teamcity[progressMessage '$message']"
+}
+
+function TeamCity-ProgressStart([string]$message) {
+	Write-Output "##teamcity[progressStart '$message']"
+}
+
+function TeamCity-ProgressFinish([string]$message) {
+	Write-Output "##teamcity[progressFinish '$message']"
+}
+
 
 function TeamCity-TestStarted([string]$name) {
 	Write-Output "##teamcity[testStarted name='$name']"

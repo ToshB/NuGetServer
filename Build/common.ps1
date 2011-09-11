@@ -1,4 +1,4 @@
-﻿Import-Module .\Build\psake-contrib\teamcity.psm1
+﻿Import-Module .\Build\teamcity.psm1
 
 properties { 
 	$BaseDir = Resolve-Path ".\"
@@ -11,6 +11,11 @@ properties {
 } 
 
 $framework = '4.0'
+
+TaskSetup {
+	$taskName = $currentContext.currentTaskName
+	TeamCity-ProgressMessage("Executing task '$taskName'")
+}
 
 task default -depends Build
 
