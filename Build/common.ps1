@@ -46,12 +46,10 @@ task Test -depends Build {
 		throw "Could not find package NUnit at $NUnitPath, install with Install-Package NUnit"
 	}
 	if($Tests){
-		TeamCity-TestSuiteStarted "Started a test suite"
 		$old = pwd
 		cd $OutputDir
-	  	exec { & $NUnit /nologo $Tests }
+	  	& $NUnit /nologo $Tests
 		cd $old
-		TeamCity-TestSuiteFinished "Finished a test suite" 
 	}else{
 		Write-Host "Nothing to test ($TestAssemblies)"
 	}
